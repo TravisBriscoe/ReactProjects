@@ -1,0 +1,78 @@
+.modal-edit {
+	/* background: #fff;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 80vw;
+	height: 80vh;
+	box-shadow: 5px 5px 10px rgba(194, 192, 192, 0.5);
+	padding: 20px;
+	filter: blur(0);
+	z-index: 50000;
+	pointer-events: all;
+	border-radius: 17px;
+	border-left: 1px solid rgba(90, 110, 120, 0.6); */
+	/* border-top: 1px solid rgba(90, 110, 120, 0.6); */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.modal-edit-title-container {
+	width: 90%;
+	margin-bottom: 20px;
+	justify-items: center;
+}
+
+.modal-edit-title {
+	width: 100%;
+	font-size: 22px;
+	border: 2px solid black;
+	padding: 5px 0 5px 10px;
+}
+
+.modal-edit-label {
+	font-size: 55px;
+}
+
+.modal-edit-container {
+	width: 90%;
+	justify-items: center;
+	align-content: center;
+}
+
+.modal-edit-text {
+	height: 300px;
+	width: 90%;
+	font-size: 22px;
+	border: 2px solid black;
+	padding: 5px 0 5px 10px;
+}
+
+.modal-edit-submit {
+	border: none;
+	color: rgb(90, 110, 120);
+	box-shadow: 2px 2px 2px grey;
+	cursor: pointer;
+	border-radius: 25px;
+	padding: 5px 8px;
+	text-transform: uppercase;
+	transition: all 200ms;
+}
+
+.modal-edit-submit:hover {
+	background-color: rgba(90, 110, 120, 0.6);
+	box-shadow: 4px 4px 2px grey;
+	transform: translate(-2%, -2%);
+	color: white;
+}
+
+.modal-edit-submit:active {
+	background-color: rgba(90, 110, 120, 0.6);
+	transform: translate(5%, 5%);
+	box-shadow: 1px 1px 2px grey;
+	color: white;
+}

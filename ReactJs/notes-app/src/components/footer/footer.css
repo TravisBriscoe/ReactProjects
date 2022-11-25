@@ -1,0 +1,30 @@
+.footer {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 2px;
+	display: flex;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	background: lightgrey;
+}
+
+.footer-nav {
+	min-width: 25%;
+	display: flex;
+	justify-content: space-evenly;
+	transform: translate(-15%);
+}
+
+a {
+	text-decoration: none;
+	color: rgb(90, 110, 120);
+	transition: color 200ms;
+}
+
+a:hover {
+	color: rgba(90, 110, 120, 0.4);
+}

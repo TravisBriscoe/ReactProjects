@@ -1,0 +1,22 @@
+.notes-container {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(min-content, 1fr));
+	grid-template-rows: repeat(autofit, minmax(min-content, 1fr));
+	justify-items: center;
+	gap: 20px;
+}
+
+.container {
+	height: 75vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty-notes-title {
+	font-size: 44px;
+}
+
+.empty-notes-subtitle {
+	text-align: center;
+}

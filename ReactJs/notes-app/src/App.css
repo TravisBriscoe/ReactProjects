@@ -1,0 +1,129 @@
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: rgb(90, 110, 120);
+}
+
+.main-container {
+	min-width: 100vw;
+	min-height: 100vh;
+}
+
+/* .notes-card {
+	position: relative;
+	width: 300px;
+	height: 150px;
+	box-shadow: 5px 5px 5px grey;
+	background: lightgray;
+	padding-left: 5px;
+	padding-right: 5px;
+	transition: all 200ms;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.notes-card:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 7px 7px 5px grey;
+}
+
+.notes-card:active {
+	transform: translate(5px, 5px);
+	box-shadow: 2px 2px 5px grey;
+}
+
+.card-title {
+	display: flex;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.notes-priority-container {
+	align-self: center;
+	margin-top: 5px;
+	text-align: center;
+	font-style: italic;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+.notes-title {
+	width: 90%;
+	padding-left: 10px;
+}
+
+.notes-title-large {
+	padding-top: 4px;
+	font-size: 24px;
+} */
+
+.low-priority {
+	color: rgba(90, 110, 120, 0.4);
+}
+
+.high-priority {
+	color: red;
+}
+
+.notes-nav {
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.notes-text {
+	color: rgb(55, 55, 55);
+}
+
+.notes-nav button {
+	margin-right: 20px;
+}
+
+.blur {
+	filter: blur(2px);
+	pointer-events: none;
+}
+
+@media screen and (max-width: 1585px) {
+	.notes-container {
+		justify-content: center;
+		grid-template-columns: repeat(4, minmax(min-content, 300px));
+		gap: 10px;
+		overflow: scroll;
+	}
+}
+
+@media screen and (max-width: 1270px) {
+	.notes-container {
+		justify-content: center;
+		grid-template-columns: repeat(3, minmax(min-content, 300px));
+		gap: 10px;
+		overflow: scroll;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.notes-container {
+		justify-content: center;
+		grid-template-columns: repeat(2, minmax(min-content, 200px));
+		gap: 10px;
+		overflow: scroll;
+	}
+}
+@media screen and (max-width: 600px) {
+	.notes-container {
+		justify-content: center;
+		grid-template-columns: repeat(1, minmax(min-content, 300px));
+		overflow: scroll;
+	}
+}

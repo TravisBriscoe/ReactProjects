@@ -1,0 +1,48 @@
+.notes-card {
+	position: relative;
+	width: 300px;
+	height: 150px;
+	box-shadow: 5px 5px 5px grey;
+	/* margin-right: 20px; */
+	background: lightgray;
+	padding-left: 5px;
+	padding-right: 5px;
+	transition: all 200ms;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.notes-card:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 7px 7px 5px grey;
+}
+
+.notes-card:active {
+	transform: translate(5px, 5px);
+	box-shadow: 2px 2px 5px grey;
+}
+
+.card-title {
+	display: flex;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.notes-priority-container {
+	align-self: center;
+	margin-top: 5px;
+	text-align: center;
+	font-style: italic;
+	font-size: 12px;
+	margin-right: 5px;
+}
+
+.notes-title {
+	width: 90%;
+	padding-left: 10px;
+}
+
+.notes-title-large {
+	padding-top: 4px;
+	font-size: 24px;
+}

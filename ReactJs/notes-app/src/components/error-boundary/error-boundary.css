@@ -1,0 +1,11 @@
+.error {
+	filter: blur(0);
+	pointer-events: all;
+	display: flex;
+	flex-direction: column;
+	width: 80vw;
+	height: 80vh;
+	margin: auto;
+	justify-content: center;
+	align-items: center;
+}

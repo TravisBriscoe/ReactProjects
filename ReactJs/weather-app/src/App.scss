@@ -1,0 +1,128 @@
+@use "./helpers/sass/colours/colours.scss" as colours;
+@use "./helpers/sass/font-sizes/font-sizes.scss" as fontsizes;
+@use "./helpers/sass/spacing/spacing.scss" as spacing;
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+div,
+p,
+input,
+textarea {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	background-color: colours.$background;
+}
+
+body,
+a,
+input {
+	color: colours.$primary;
+}
+
+.weather {
+	&-header {
+		display: flex;
+		width: 100vw;
+		height: spacing.$xxxlg;
+		background-color: colours.$secondary;
+		justify-content: center;
+		align-items: center;
+
+		&-title {
+			font-size: fontsizes.$xxlg;
+		}
+	}
+
+	&-main {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		width: 30%;
+		margin: auto;
+		margin-top: spacing.$lg;
+		border: spacing.$xxsm solid colours.$black;
+		border-radius: 5%;
+		background-color: colours.$background-secondary;
+		box-shadow: 4px 4px 2px colours.$shadow;
+	}
+
+	&-input-container {
+		text-align: center;
+		margin-top: spacing.$lg;
+	}
+
+	&-input {
+		width: 75%;
+		padding: spacing.$xsm spacing.$sm;
+		font-size: fontsizes.$lg;
+	}
+
+	&-info {
+		&-temp {
+			margin: spacing.$sm auto;
+			height: 383.5px;
+			border: spacing.$xxsm solid colours.$black;
+			width: 82%;
+			background-color: colours.$white;
+			border-radius: spacing.$md;
+		}
+	}
+
+	&-footer {
+		position: absolute;
+		bottom: 0;
+		height: spacing.$xxlg;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		background-color: colours.$background-secondary;
+
+		&-right,
+		&-left {
+			font-size: fontsizes.$lg;
+		}
+
+		&-right {
+			padding-right: spacing.$md;
+			text-transform: uppercase;
+		}
+
+		&-left {
+			padding-left: spacing.$md;
+		}
+	}
+}
+
+a,
+a:visited,
+a:active {
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 500ms;
+}
+
+a:hover {
+	color: colours.$text-secondary;
+	font-size: 2.4rem;
+}
+
+.react-weather {
+	border-radius: 10px;
+}
+

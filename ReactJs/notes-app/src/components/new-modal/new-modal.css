@@ -1,0 +1,57 @@
+.modal-new {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 90%;
+	height: 90%;
+	margin: auto;
+}
+
+.new-note-title {
+	font-size: 44px;
+	padding-bottom: 10px;
+}
+
+.new-title {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+
+.new-title-input {
+	margin-left: 10px;
+	width: 80%;
+	padding: 8px 5px;
+	font-size: 18px;
+}
+
+.new-text {
+	height: 60%;
+	margin-bottom: 8px;
+	padding: 5px 5px;
+	font-size: 18px;
+}
+
+.modal-new-submit {
+	border: none;
+	color: rgb(90, 110, 120);
+	box-shadow: 2px 2px 2px grey;
+	cursor: pointer;
+	border-radius: 25px;
+	padding: 5px 8px;
+	text-transform: uppercase;
+	transition: all 200ms;
+}
+
+.modal-new-submit:hover {
+	background-color: rgba(90, 110, 120, 0.6);
+	box-shadow: 4px 4px 2px grey;
+	transform: translate(-2%, -2%);
+	color: white;
+}
+
+.modal-new-submit:active {
+	background-color: rgba(90, 110, 120, 0.6);
+	transform: translate(5%, 5%);
+	box-shadow: 1px 1px 2px grey;
+	color: white;
+}
