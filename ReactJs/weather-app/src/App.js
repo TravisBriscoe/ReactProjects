@@ -4,13 +4,14 @@ import { useOpenWeather } from "react-open-weather";
 import "dayjs/locale/en";
 import dayjs from "dayjs";
 
-import LittleEarth from "./assets/little-earth.png";
+import LittleEarth from "./assets/mini_little-earth.png";
 import Lightning from "./assets/lightning.png";
 
 import { apiKey } from "./helpers/api/api-key";
 import { capitalize } from "./helpers/functions/capitalize";
 
 import "./App.scss";
+import geoSearch from "./helpers/geocode/geo-search";
 
 function Header() {
 	return (
@@ -25,23 +26,42 @@ function Header() {
 function WeatherInput(props) {
 	return (
 		<div className="weather-input-container">
-			<input className="weather-input" placeholder="Enter a city" value={props.searchBar} />
+			<input
+				className="weather-input"
+				name="search"
+				placeholder="Enter a location, or enter lattitude and longitude seperated by a comma"
+				value={props.searchBar}
+				onChange={props.onChangeHandler}
+			/>
+			<button onClick={props.onSearchHandler}>Search</button>
 			<div className="weather-input-unit">
 				<label>
 					<input
 						type="radio"
 						name="metric"
-						value="metic"
+						value="metric"
 						checked={props.weatherUnit === "metric" ? true : false}
+						onChange={props.onChangeHandler}
 					/>
 					Metric
 				</label>
 				<label>
 					<input
 						type="radio"
+						name="standard"
+						value="standard"
+						checked={props.weatherUnit === "standard" ? true : false}
+						onChange={props.onChangeHandler}
+					/>
+					Standard
+				</label>
+				<label>
+					<input
+						type="radio"
 						name="imperial"
-						value="metic"
-						checked={props.weatherUnit === "metric" ? false : true}
+						value="imperial"
+						checked={props.weatherUnit === "imperial" ? true : false}
+						onChange={props.onChangeHandler}
 					/>
 					Imperial
 				</label>
@@ -51,36 +71,12 @@ function WeatherInput(props) {
 }
 
 class WeatherInfo extends React.Component {
-	constructor() {
-		super();
-
-		// this.render = this.render.bind(this);
-
-		this.state = {
-			location: null,
-		};
-	}
-
-	componentDidMount() {
-		const haveLocation = navigator.geolocation;
-
-		if (haveLocation) {
-			navigator.geolocation.getCurrentPosition((position) => {
-				const { latitude, longitude } = position.coords;
-
-				this.setState({ location: { latitude, longitude } }, () =>
-					console.log(this.state.location)
-				);
-			});
-		}
-	}
-
 	render() {
 		return (
 			<div className="weather-info">
 				<div className="weather-info-temp">
-					{this.state.location ? (
-						<Info location={this.state.location} weatherUnit={this.props.weatherUnit} />
+					{this.props.location ? (
+						<Info location={this.props.location} weatherUnit={this.props.weatherUnit} />
 					) : null}
 				</div>
 			</div>
@@ -97,27 +93,7 @@ function Info(props) {
 		unit: props.weatherUnit,
 	});
 
-	if (data) {
-		const totalWords = data.forecast[1].description.split(" ");
-		let newWords = [];
-		let newWord = "";
-
-		for (let i = 0; i < totalWords.length; i++) {
-			newWords.push(totalWords[i].replace(totalWords[i][0], totalWords[i][0].toUpperCase()));
-		}
-
-		newWord = newWords.join(" ");
-
-		console.log(newWord);
-	}
-
 	return (
-		// <ReactWeather
-		// 	className="react-weather"
-		// 	data={data}
-		// 	isLoading={isLoading}
-		// 	errorMessage={errorMessage}
-		// />
 		<div>
 			{data ? (
 				<div>
@@ -190,14 +166,47 @@ class App extends React.Component {
 	constructor() {
 		super();
 
+		this.onChangeHandler = this.onChangeHandler.bind(this);
+		this.onSearchHandler = this.onSearchHandler.bind(this);
+
 		this.state = {
 			searchBar: "",
 			weatherUnit: "metric",
+			location: null,
 		};
 	}
 
 	componentDidMount() {
 		dayjs.locale("en");
+
+		const haveLocation = navigator.geolocation;
+
+		if (haveLocation) {
+			navigator.geolocation.getCurrentPosition((position) => {
+				const { latitude, longitude } = position.coords;
+
+				this.setState({ location: { latitude, longitude } }, () =>
+					console.log(this.state.location)
+				);
+			});
+		}
+	}
+
+	async onSearchHandler() {
+		const searchData = await geoSearch(this.state.searchBar);
+		console.log(searchData[0]);
+		console.log(searchData[0].lat);
+		this.setState({ location: { latitude: searchData[0].lat, longitude: searchData[0].lon } });
+	}
+
+	onChangeHandler(event) {
+		const { value, name } = event.target;
+
+		if (name === "search") {
+			this.setState({ searchBar: value });
+		} else {
+			this.setState({ weatherUnit: value });
+		}
 	}
 
 	render() {
@@ -205,8 +214,13 @@ class App extends React.Component {
 			<div className="App">
 				<Header />
 				<div className="weather-main">
-					<WeatherInput searchBar={this.state.searchBar} weatherUnit={this.state.weatherUnit} />
-					<WeatherInfo weatherUnit={this.state.weatherUnit} />
+					<WeatherInput
+						searchBar={this.state.searchBar}
+						weatherUnit={this.state.weatherUnit}
+						onSearchHandler={this.onSearchHandler}
+						onChangeHandler={this.onChangeHandler}
+					/>
+					<WeatherInfo weatherUnit={this.state.weatherUnit} location={this.state.location} />
 				</div>
 				<Footer />
 			</div>
