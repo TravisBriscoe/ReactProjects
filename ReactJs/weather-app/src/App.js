@@ -4,7 +4,7 @@ import { useOpenWeather } from "react-open-weather";
 import "dayjs/locale/en";
 import dayjs from "dayjs";
 
-import LittleEarth from "./assets/mini_little-earth.png";
+import LittleEarth from "./assets/little-earth.png";
 import Lightning from "./assets/lightning.png";
 
 import { apiKey } from "./helpers/api/api-key";
