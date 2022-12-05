@@ -102,9 +102,8 @@ function WeatherInput() {
 	);
 }
 
-function WeatherInfo(props) {
+function WeatherInfo() {
 	const location = useSelector(myLocation);
-	const unit = useSelector(myUnit);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -123,9 +122,7 @@ function WeatherInfo(props) {
 
 	return (
 		<div className="weather-info">
-			<div className="weather-info-temp">
-				{location ? <Info location={location} weatherUnit={unit} address={props.address} /> : null}
-			</div>
+			<div className="weather-info-temp">{location ? <Info /> : null}</div>
 		</div>
 	);
 }
@@ -133,12 +130,13 @@ function WeatherInfo(props) {
 function Info(props) {
 	const address = useSelector(myAddress);
 	const location = useSelector(myLocation);
+	const weatherUnit = useSelector(myUnit);
 	const dispatch = useDispatch();
 
 	const { data } = useOpenWeather({
 		key: apiKey,
-		lat: props.location.latitude,
-		lon: props.location.longitude,
+		lat: location.latitude,
+		lon: location.longitude,
 		lang: "en",
 		unit: "metric",
 	});
@@ -184,31 +182,30 @@ function Info(props) {
 									{data.forecast[0].date.replaceAll(" ", ", ")}
 								</p>
 								<p className="bold">
-									{props.weatherUnit === "imperial"
+									{weatherUnit === "imperial"
 										? convertTemp(data.current.temperature.current)
 										: data.current.temperature.current}
 									&deg;
-									{props.weatherUnit === "metric" ? "C" : "F"},{" "}
-									{capitalize(data.forecast[0].description)}
+									{weatherUnit === "metric" ? "C" : "F"}, {capitalize(data.forecast[0].description)}
 								</p>
 								<p className="italic">
 									Low:&nbsp;
 									<span className="bold normal">
-										{props.weatherUnit === "imperial"
+										{weatherUnit === "imperial"
 											? convertTemp(data.forecast[0].temperature.min)
 											: data.forecast[0].temperature.min}
 										&deg;
-										{props.weatherUnit === "metric" ? "C" : "F"}
+										{weatherUnit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 								<p className="italic">
 									High:&nbsp;
 									<span className="bold normal">
-										{props.weatherUnit === "imperial"
+										{weatherUnit === "imperial"
 											? convertTemp(data.forecast[0].temperature.max)
 											: data.forecast[0].temperature.max}
 										&deg;
-										{props.weatherUnit === "metric" ? "C" : "F"}
+										{weatherUnit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 							</div>
@@ -221,21 +218,21 @@ function Info(props) {
 								<p className="italic">
 									Low:&nbsp;
 									<span className="bold normal">
-										{props.weatherUnit === "imperial"
+										{weatherUnit === "imperial"
 											? convertTemp(data.forecast[1].temperature.min)
 											: data.forecast[1].temperature.min}
 										&deg;
-										{props.weatherUnit === "metric" ? "C" : "F"}
+										{weatherUnit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 								<p className="italic">
 									High:&nbsp;
 									<span className="bold normal">
-										{props.weatherUnit === "imperial"
+										{weatherUnit === "imperial"
 											? convertTemp(data.forecast[1].temperature.max)
 											: data.forecast[1].temperature.max}
 										&deg;
-										{props.weatherUnit === "metric" ? "C" : "F"}
+										{weatherUnit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 							</div>
