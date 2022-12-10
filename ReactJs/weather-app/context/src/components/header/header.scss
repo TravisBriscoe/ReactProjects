@@ -1,0 +1,18 @@
+@use "../../helpers/sass/colours/colours.scss" as colours;
+@use "../../helpers/sass/font-sizes/font-sizes.scss" as fontsizes;
+@use "../../helpers/sass/spacing/spacing.scss" as spacing;
+
+.weather {
+	&-header {
+		display: flex;
+		width: 100vw;
+		height: spacing.$xxxlg;
+		background-color: colours.$secondary;
+		justify-content: center;
+		align-items: center;
+
+		&-title {
+			font-size: fontsizes.$xxlg;
+		}
+	}
+}

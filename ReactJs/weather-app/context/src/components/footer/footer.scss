@@ -1,0 +1,29 @@
+@use "../../helpers/sass/colours/colours.scss" as colours;
+@use "../../helpers/sass/font-sizes/font-sizes.scss" as fontsizes;
+@use "../../helpers/sass/spacing/spacing.scss" as spacing;
+
+.weather-footer {
+	position: absolute;
+	bottom: 0;
+	height: spacing.$xxlg;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background-color: colours.$background-secondary;
+
+	&-right,
+	&-left {
+		font-size: fontsizes.$lg;
+	}
+
+	&-right {
+		padding-right: spacing.$md;
+		text-transform: uppercase;
+	}
+
+	&-left {
+		padding-left: spacing.$md;
+	}
+}
