@@ -13,7 +13,7 @@ export async function geoSearch(data) {
 
 		return await response;
 	} catch (err) {
-		console.log(err);
+		return err;
 	}
 }
 
@@ -29,6 +29,6 @@ export async function reverseGeoCode(data) {
 
 		return await response;
 	} catch (err) {
-		console.log(err);
+		return err;
 	}
 }

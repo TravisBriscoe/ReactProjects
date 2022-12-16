@@ -1,0 +1,28 @@
+@use "../../helpers/sass/colours/colours.scss" as colours;
+@use "../../helpers/sass/font-sizes/font-sizes.scss" as fontsizes;
+@use "../../helpers/sass/spacing/spacing.scss" as spacing;
+
+.weather {
+	&-input-container {
+		text-align: center;
+		margin-top: spacing.$lg;
+	}
+
+	&-input {
+		width: 75%;
+		padding: spacing.$xsm spacing.$sm;
+		font-size: fontsizes.$lg;
+
+		&-unit {
+			height: 30px;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			&-imperial {
+				padding-left: 20px;
+			}
+		}
+	}
+}

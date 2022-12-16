@@ -13,6 +13,8 @@ function Header() {
 	const [{ basket, user }] = useStateValue();
 
 	const handleAuthentication = () => {
+		console.log(user);
+
 		if (user) {
 			auth.signOut();
 		}
@@ -35,8 +37,10 @@ function Header() {
 
 			<div className="header__nav">
 				<Link to={!user && "/login"} style={{ textDecoration: "none" }}>
-					<div className="header__option">
-						<span className="header__optionLineOne">Hello, {user ? user.email : "Guest"}</span>
+					<div className="header__option" onClick={handleAuthentication}>
+						<span className="header__optionLineOne">
+							Hello, {user?.name ? user.name : user?.email ? user.email : "Guest"}
+						</span>
 						<span className="header__optionLineTwo">{user ? "Sign Out" : "Sign In"}</span>
 					</div>
 				</Link>

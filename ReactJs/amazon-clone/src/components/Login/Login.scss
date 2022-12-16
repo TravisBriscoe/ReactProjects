@@ -6,12 +6,13 @@
 	align-items: center;
 
 	&__logo {
-		margin-top: 20px;
-		margin-bottom: 20px;
 		object-fit: contain;
 		width: 100px;
-		margin-right: auto;
-		margin-left: auto;
+		margin: 0 auto;
+		&__container {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 	}
 
 	&__container {
@@ -38,6 +39,7 @@
 		margin-bottom: 10px;
 		background-color: white;
 		width: 98%;
+		padding: 0 5px 0 5px;
 	}
 
 	&__container > p {

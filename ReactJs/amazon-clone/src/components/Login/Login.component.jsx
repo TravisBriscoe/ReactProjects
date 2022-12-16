@@ -15,8 +15,7 @@ export default function Login() {
 		auth
 			.signInWithEmailAndPassword(email, password)
 			.then((auth) => {
-				console.log(auth);
-				history("/");
+				history(-1);
 			})
 			.catch((error) => alert(error.message));
 	};
@@ -28,7 +27,8 @@ export default function Login() {
 			.createUserWithEmailAndPassword(email, password)
 			.then((auth) => {
 				if (auth) {
-					history("/");
+					console.log(auth);
+					history(-1);
 				}
 			})
 			.catch((err) => alert(err.message));
@@ -37,10 +37,13 @@ export default function Login() {
 	return (
 		<div className="login">
 			<Link to="/">
-				<img
-					className="login__logo"
-					src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
-				/>
+				<div className="login__logo__container">
+					<img
+						className="login__logo"
+						src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png"
+						alt=""
+					/>
+				</div>
 			</Link>
 
 			<div className="login__container">

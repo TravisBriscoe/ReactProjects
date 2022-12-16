@@ -15,7 +15,7 @@ import LittleEarth from "./assets/little-earth.png";
 import { apiKey } from "./helpers/api/api-key";
 import { capitalize } from "./helpers/functions/capitalize";
 import { geoSearch, reverseGeoCode } from "./helpers/geocode/geo-search";
-import convertTemp from "./helpers/temperature/temp";
+import { convertTemp, removeNegative } from "./helpers/temperature/temp";
 
 import "./App.scss";
 
@@ -185,73 +185,82 @@ function Info() {
 						</div>
 						<div className="weather-info-temp-container">
 							<div className="weather-info-temp-today">
-								<div style={todayBackround} className="weather-info-temp-today-icon">
-									{/* <svg
-										viewBox="0 0 40 35"
-										color="rgba(0,0,0,.5"
-										xmlns="http://www.w3.org/2000/svg"
-										className="weather-info-temp-today-icon"
+								<p className="weather-info-temp-title">Today:</p>
+								<p className="weather-info-temp-date">
+									{data.forecast[0].date.replaceAll(" ", ", ")}
+								</p>
+								<p className="bold weather-info-temp-current">
+									{unit === "imperial"
+										? convertTemp(removeNegative(data.current.temperature.current))
+										: removeNegative(data.current.temperature.current)}
+									&deg;
+									{unit === "metric" ? "C" : "F"}, {capitalize(data.forecast[0].description)}
+									<svg
+										viewBox="0 0 30 30"
+										height="30"
+										width="50"
+										xmlns="http://www.w3.org/2000/svg/"
+										className="weather-info-temp-icon"
 									>
 										<path d={data.forecast[0].icon} />
-									</svg> */}
-									<p className="weather-info-temp-title">Today:</p>
-									<p className="weather-info-temp-date">
-										{data.forecast[0].date.replaceAll(" ", ", ")}
-									</p>
-									<p className="bold">
-										{weatherUnit === "imperial"
-											? convertTemp(data.current.temperature.current)
-											: data.current.temperature.current}
+									</svg>
+								</p>
+								<p className="italic">
+									Low:&nbsp;
+									<span className="bold normal">
+										{unit === "imperial"
+											? convertTemp(removeNegative(data.forecast[0].temperature.min))
+											: removeNegative(data.forecast[0].temperature.min)}
 										&deg;
-										{weatherUnit === "metric" ? "C" : "F"},{" "}
-										{capitalize(data.forecast[0].description)}
-									</p>
-									<p className="italic">
-										Low:&nbsp;
-										<span className="bold normal">
-											{weatherUnit === "imperial"
-												? convertTemp(data.forecast[0].temperature.min)
-												: data.forecast[0].temperature.min}
-											&deg;
-											{weatherUnit === "metric" ? "C" : "F"}
-										</span>
-									</p>
-									<p className="italic">
-										High:&nbsp;
-										<span className="bold normal">
-											{weatherUnit === "imperial"
-												? convertTemp(data.forecast[0].temperature.max)
-												: data.forecast[0].temperature.max}
-											&deg;
-											{weatherUnit === "metric" ? "C" : "F"}
-										</span>
-									</p>
-								</div>
+										{unit === "metric" ? "C" : "F"}
+									</span>
+								</p>
+								<p className="italic">
+									High:&nbsp;
+									<span className="bold normal">
+										{unit === "imperial"
+											? convertTemp(removeNegative(data.forecast[0].temperature.max))
+											: removeNegative(data.forecast[0].temperature.max)}
+										&deg;
+										{unit === "metric" ? "C" : "F"}
+									</span>
+								</p>
 							</div>
 							<div className="weather-info-temp-tomorrow">
 								<p className="weather-info-temp-title">Tomorrow:</p>
 								<p className="weather-info-temp-date">
 									{data.forecast[1].date.replaceAll(" ", ", ")}
 								</p>
-								<p className="bold">{capitalize(data.forecast[1].description)}</p>
+								<p className="bold weather-info-temp-current">
+									{capitalize(data.forecast[1].description)}{" "}
+									<svg
+										viewBox="0 0 30 30"
+										height="30"
+										width="50"
+										xmlns="http://www.w3.org/2000/svg/"
+										className="weather-info-temp-icon"
+									>
+										<path d={data.forecast[1].icon} />
+									</svg>
+								</p>
 								<p className="italic">
 									Low:&nbsp;
 									<span className="bold normal">
-										{weatherUnit === "imperial"
-											? convertTemp(data.forecast[1].temperature.min)
-											: data.forecast[1].temperature.min}
+										{unit === "imperial"
+											? convertTemp(removeNegative(data.forecast[1].temperature.min))
+											: removeNegative(data.forecast[1].temperature.min)}
 										&deg;
-										{weatherUnit === "metric" ? "C" : "F"}
+										{unit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 								<p className="italic">
 									High:&nbsp;
 									<span className="bold normal">
-										{weatherUnit === "imperial"
-											? convertTemp(data.forecast[1].temperature.max)
-											: data.forecast[1].temperature.max}
+										{unit === "imperial"
+											? convertTemp(removeNegative(data.forecast[1].temperature.max))
+											: removeNegative(data.forecast[1].temperature.max)}
 										&deg;
-										{weatherUnit === "metric" ? "C" : "F"}
+										{unit === "metric" ? "C" : "F"}
 									</span>
 								</p>
 							</div>
